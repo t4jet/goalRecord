@@ -21,7 +21,7 @@ func DBConnection() *sql.DB{
 	CreateTable(db)
 	sqlDB, err := db.DB()
 	if err != nil {
-		panic(fmt.Errorf("DB Error: %w"), err)
+		panic(fmt.Errorf("DB Error: %w", err))
 	}
 	return sqlDB
 }
