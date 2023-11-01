@@ -3,7 +3,6 @@ package model
 import (
 	"database/sql"
 	"fmt"
-	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 	"gorm.io/driver/mysql"
@@ -27,13 +26,7 @@ func DBConnection() *sql.DB{
 }
 // DBのdsnを取得する
 func GetDBConfig() string {
-	user := os.Getenv("DB_USER")
-	password := os.Getenv("DB_PASS")
-	hostname := os.Getenv("DB_HOST")
-	port := os.Getenv("DB_PORT")
-	dbname := os.Getenv("DB_NAME")
-
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", user, password, hostname, port, dbname) + "?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := fmt.Sprintf("user:password@tcp(localhost:3306)/db?charset=utf8mb4&parseTime=True&loc=Local")
 	return dsn
 }
 
