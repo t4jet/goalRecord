@@ -9,23 +9,39 @@ services:
       - mysql
     environment:
       DB_HOST: mysql
-      DB_PORT: 3310
-      DB_USER: username
+      DB_PORT: 3306
+      DB_USER: user
       DB_PASS: password
-      DB_NAME: database_name
+      DB_NAME: db
 
+  
   mysql:
-    image: mysql:latest
+    image: mysql:8.0.27
     ports:
-      - 3310:3310
+      - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: database_name
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    restart: always
+    networks:
+      - default
+
+  cli:
+    image: mysql:8.0.27
+    networks:
+      - default
+    command: mysql -hmysql -uuser -ppassword db
 
   frontend:
     build:
-      context: ./frontend
+      context: ./frontend  # Dockerfileの場所を指定
+      dockerfile: Dockerfile  # Dockerfileの名前を指定
     ports:
-      - 3000:3000
-    # environment:
-    #   BACKEND_API_URL: http://localhost:8080
+      - "3000:3000"
+volumes:
+  mysql_data:
+networks:
+  default:
+    driver: bridge
