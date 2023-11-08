@@ -3,7 +3,6 @@ package router
 import (
 	"net/http"
 	"os"
-
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 
@@ -16,6 +15,7 @@ func SetRouter(e *echo.Echo) error {
   // ミドルウェアを設定
   e.Use(middleware.Logger())
   e.Use(middleware.Recover())
+	e.Use(middleware.CORS())
 
   // ルートを設定
 	e.GET("/", hello)
