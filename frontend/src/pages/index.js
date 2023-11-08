@@ -1,33 +1,24 @@
 import { useEffect, useState } from 'react';
 
 export default function Home() {
-  const [users, setUsers] = useState([]);
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    async function fetchUsers() {
-      try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users');
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
-        setUsers(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-
-    fetchUsers();
+    fetch('http://localhost:8080/api/tasks', {
+      mode: 'cors',
+    })
+      .then((response) => response.json())
+      .then((data) => setTasks(data));
   }, []);
 
   return (
     <div>
-      <h1>User List</h1>
+      <h1>Tasks</h1>
       <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.name}</li>
+        {tasks.map((task) => (
+          <li key={task.ID}>
+            {task.Name} - {task.Finished ? 'Finished' : 'Not Finished'}
+          </li>
         ))}
       </ul>
     </div>
