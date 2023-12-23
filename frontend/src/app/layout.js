@@ -14,17 +14,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ja">
-      <div className="container">
+      <body className="container">
         <PageTitle>TODO List</PageTitle>
         <div className={styles.app__wrapper}>
           <Header />
           {/* <AppContent /> */}
           {children}
+          <footer>
+            <small>© 2023 t4jet</small>
+          </footer>
         </div>
-      </div>
-      <footer>
-        <small>© 2023 t4jet</small>
-      </footer>
+      </body>
     </html>
   );
 }
