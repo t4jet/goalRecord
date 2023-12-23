@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Link from "next/link";
+import PageTitle from './components/PageTitle';
+import styles from './styles/app.module.scss';
 import Header from './components/Header';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -13,14 +14,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ja">
-      <head />
-      <body className={inter.className}>
-        <Header />
-        {children}
-        <footer>
-          <small>© 2023 t4jet</small>
-        </footer>
-      </body>
+      <div className="container">
+        <PageTitle>TODO List</PageTitle>
+        <div className={styles.app__wrapper}>
+          <Header />
+          {/* <AppContent /> */}
+          {children}
+        </div>
+      </div>
+      <footer>
+        <small>© 2023 t4jet</small>
+      </footer>
     </html>
   );
 }
