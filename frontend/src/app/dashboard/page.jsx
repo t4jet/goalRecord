@@ -1,10 +1,30 @@
+'use client'
+
+import { useEffect, useState } from "react";
+
 export default function Dashboard() {
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/dashboard/`, {
+          method: "GET",
+        });
+        const responseJSON = await response.json();
+        const setTasks = responseJSON.data;
+      } catch (error) {
+        console.error(error)
+      }
+      fetchData();
+    }
+  }, [])
   return (
     <div>
       <ul>
-        <li>タスク1</li>
-        <li>タスク2</li>
-        <li>タスク3</li>
+        {tasks.map((task) => (
+        <li key={task.id}>{task.name}</li>
+        ))}
       </ul>
     </div>
   )
