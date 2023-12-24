@@ -1,5 +1,6 @@
 # GoalRecord
 
+## backend
 使い方
 ```docker-compose up -d --build```
 
@@ -8,3 +9,12 @@
 
 ポートがふさがていたら
 ``` sudo service mysql stop```
+
+## frontend
+使い方
+
+最初にする
+```npm install```
+
+起動
+```npm run dev```
