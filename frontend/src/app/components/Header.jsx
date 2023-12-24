@@ -8,7 +8,7 @@ function Header() {
     <div className={styles.appHeader}>
       <h1>全てのタスク</h1>
       <Button variant="primary" onClick={() => setModalOpen(true)}>
-        Add Task
+        追加
       </Button>
     </div>
     
