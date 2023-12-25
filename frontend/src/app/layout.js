@@ -1,7 +1,7 @@
 import './globals.css'
 import PageTitle from './components/PageTitle';
 import styles from './styles/app.module.scss';
-import Header from './components/Header';
+import TodoForm from './components/TodoForm';
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
       <body className="container">
         <PageTitle>TODO List</PageTitle>
         <div className={styles.app__wrapper}>
-          <Header />
+          <TodoForm />
           {children}
           <footer>
             <small>© 2023 t4jet</small>
