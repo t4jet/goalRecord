@@ -18,9 +18,9 @@ export async function GET(request) {
   );
 }
 
-export async function PUT(request) {
+export async function POST(request) {
   const body = await request.json();
   return NextResponse.json(
-    { status: 200 }
+    { body:body.name,status: 200 }
   );
 }
