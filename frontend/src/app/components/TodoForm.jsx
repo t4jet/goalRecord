@@ -4,34 +4,37 @@ import style from '../styles/app.module.scss';
 import Button from './Button';
 
 export default function TodoForm() {
-  const [data, setData] = useState('')
+  const [taskName, setTaskName] = useState('')
 
   const onChangeHandler = (e) => {
-    setData(e.target.value)
+    setTaskName(e.target.value)
   }
 
   const onSubmitHandler = async (e) => {
     e.preventDefault()
 
-    const res = await fetch('/api/post', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ data }),
-    })
-
-    const data = await res.json()
-    setPostedData(data.body)
+    try {
+      const data = {
+        name: taskName
+      }
+      await fetch(`http://localhost:8080/api/tasks`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
   return (
     <form onSubmit={onSubmitHandler} className={style.appHeader} action='/api/form' method='POST'>
-      <input value={data} className={style.emptyText} onChange={onChangeHandler} type='text' name='data' placeholder='タスクを入力' />
-      <Button variant="primary" type='onSubmit'>
+      <input value={taskName} className={style.emptyText} onChange={onChangeHandler} type='text' name="name" placeholder='タスクを入力' />
+      <Button variant="primary" type='submit'>
         追加
       </Button>
     </form>
     
   );
 }
-
