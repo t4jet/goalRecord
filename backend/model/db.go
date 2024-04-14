@@ -26,14 +26,15 @@ func DBConnection() *sql.DB{
 }
 // DBのdsnを取得する
 func GetDBConfig() string {
-	dsn := fmt.Sprintf(
-		"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		os.Getenv("DB_USER"),
-		os.Getenv("DB_PASS"),
-		os.Getenv("DB_HOST"),
-		os.Getenv("DB_PORT"),
-		os.Getenv("DB_NAME"),
-	)
+	// dsn := fmt.Sprintf(
+	// 	"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+	// 	os.Getenv("DB_USER"),
+	// 	os.Getenv("DB_PASS"),
+	// 	os.Getenv("DB_HOST"),
+	// 	os.Getenv("DB_PORT"),
+	// 	os.Getenv("DB_NAME"),
+	// )
+	dsn := "user:password@tcp(192.168.0.0:3306)//db?charset=utf8&parseTime=true"
 	return dsn
 }
 
