@@ -18,3 +18,6 @@
 
 起動
 ```npm run dev```
+
+アクセスするページ
+localhost:3000/dashbord
